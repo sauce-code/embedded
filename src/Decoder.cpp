@@ -9,7 +9,7 @@ Decoder::~Decoder() {
 }
 
 char* Decoder::decode() {
-	int* numbers = reader.read();
+	int* numbers = reader->read();
 	// TODO
 	return "Sattelit X sendet X";
 }

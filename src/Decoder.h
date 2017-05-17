@@ -3,7 +3,7 @@
 
 class Decoder {
 private:
-	Reader reader;
+	Reader* reader;
 public:
 	Decoder(const char*);
 	virtual ~Decoder();
