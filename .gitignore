@@ -32,7 +32,7 @@
 *.app
 
 # Debug folder
-/bin/
+/Debug/
 
 # XML files
 *.xml
