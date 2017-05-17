@@ -1,15 +1,18 @@
-//============================================================================
-// Name        : embedded.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
 #include <iostream>
+//#include <stdlib.h>
+#include <stdlib.h>
+
+#include "Reader.h"
+#include "Decoder.h"
+
 using namespace std;
 
+#define PATH_DEFAULT "sequences/gps_sequence_20.txt"
+
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
-	return 0;
+	Decoder* decoder = new Decoder(PATH_DEFAULT);
+	char* output = decoder->decode();
+	printf("%s\n", output);
+	delete decoder;
+	return EXIT_SUCCESS;
 }
