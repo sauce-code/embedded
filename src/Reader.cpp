@@ -5,7 +5,7 @@
 
 Reader::Reader(const char* path) {
 //	file = open(path, O_RDONLY);
-	filename = path;
+	this->path = path;
 	file = fopen(path, "r");
 }
 

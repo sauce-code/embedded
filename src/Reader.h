@@ -10,7 +10,7 @@
 
 class Reader {
 private:
-	const char* filename;
+	const char* path;
 	FILE* file;
 public:
 	Reader(const char*);
