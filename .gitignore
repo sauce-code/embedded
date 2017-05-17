@@ -33,3 +33,6 @@
 
 # Debug folder
 /bin/
+
+# XML files
+*.xml
