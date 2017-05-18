@@ -11,5 +11,6 @@ Decoder::~Decoder() {
 char* Decoder::decode() {
 	long int* numbers = reader->read();
 	// TODO
+	delete numbers;
 	return "Sattelit X sendet X";
 }

@@ -35,6 +35,8 @@ long int* Reader::read() {
 		result[i] = strtol(strings[i], NULL, 10);
 	}
 
+	delete strings;
+
 	return result;
 }
 
