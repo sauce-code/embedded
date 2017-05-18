@@ -9,6 +9,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
+	// lese dateipfad aus parameter
 	char* path = argv[1];
 
 	// waren die Eingabeparameter korrekt?
@@ -33,5 +34,6 @@ int main(int argc, char** argv) {
 	// aufraeumen
 	delete decoder;
 
+	// ende
 	return EXIT_SUCCESS;
 }
