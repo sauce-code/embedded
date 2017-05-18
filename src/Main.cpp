@@ -1,18 +1,37 @@
 #include <iostream>
-//#include <stdlib.h>
 #include <stdlib.h>
+#include <fstream>
 
 #include "Reader.h"
 #include "Decoder.h"
 
 using namespace std;
 
-#define PATH_DEFAULT "sequences/gps_sequence_20.txt"
+int main(int argc, char** argv) {
 
-int main() {
-	Decoder* decoder = new Decoder(PATH_DEFAULT);
+	char* path = argv[1];
+
+	// waren die Eingabeparameter korrekt?
+	if (argc != 2) {
+		cerr << "Fehler bei der Eingabe der Parameter" << endl;
+		return EXIT_FAILURE;
+	}
+
+	// ueberpruefen, ob Eingabedatei geoeffnet werden kann
+	ifstream fileTest(path);
+	if (!fileTest.is_open()) {
+		cerr << "Datei " << path << " kann nicht geoeffnet werden" << endl;
+		return EXIT_FAILURE;
+	}
+	fileTest.close();
+
+	// Programm ausfuehren
+	Decoder* decoder = new Decoder(path);
 	char* output = decoder->decode();
 	printf("%s\n", output);
+
+	// aufraeumen
 	delete decoder;
+
 	return EXIT_SUCCESS;
 }
