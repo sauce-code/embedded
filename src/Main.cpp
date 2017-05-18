@@ -9,14 +9,14 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-	// lese dateipfad aus parameter
-	char* path = argv[1];
-
 	// waren die Eingabeparameter korrekt?
 	if (argc != 2) {
 		cerr << "Fehler bei der Eingabe der Parameter" << endl;
 		return EXIT_FAILURE;
 	}
+
+	// lese dateipfad aus parameter
+	char* path = argv[1];
 
 	// ueberpruefen, ob Eingabedatei geoeffnet werden kann
 	ifstream fileTest(path);
