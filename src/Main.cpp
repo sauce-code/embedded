@@ -1,4 +1,3 @@
-#include <iostream>
 #include <stdlib.h>
 #include <fstream>
 
@@ -11,7 +10,7 @@ int main(int argc, char** argv) {
 
 	// waren die Eingabeparameter korrekt?
 	if (argc != 2) {
-		cerr << "Fehler bei der Eingabe der Parameter" << endl;
+		fprintf(stderr, "Parameter fehlerhaft");
 		return EXIT_FAILURE;
 	}
 
@@ -21,7 +20,7 @@ int main(int argc, char** argv) {
 	// ueberpruefen, ob Eingabedatei geoeffnet werden kann
 	ifstream fileTest(path);
 	if (!fileTest.is_open()) {
-		cerr << "Datei " << path << " kann nicht geoeffnet werden" << endl;
+		fprintf(stderr, "Datei %s kann nicht geoeffnet werden", path);
 		return EXIT_FAILURE;
 	}
 	fileTest.close();
