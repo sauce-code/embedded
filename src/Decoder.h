@@ -3,6 +3,8 @@
 
 #include "Reader.h"
 
+#define SATELLITE_COUNT 24
+
 class Decoder {
 private:
 	Reader* reader;
