@@ -27,6 +27,14 @@ public:
 		}
 		return to;
 	}
+
+	static void rotation1023(int* reg) {
+		int carry = reg[0];
+		for (int i = 0; i < 1022; i++) {
+			reg[i] = reg[i+1];
+		}
+		reg[1022] = carry;
+	}
 };
 
 

@@ -35,7 +35,21 @@ char* Decoder::decode() {
 	int x = Utilities::scalarProduct(a, numbers);
 	printf("\n%d\n", x);
 
-
+	printf("\n");
+	for (int i = 0; i < 1023; i++) {
+		printf("%d", a[i]);
+	}
+	printf("\n");
+//	Utilities::rotation1023(a);
+	for (int i = 0; i < 1023; i++) {
+				printf("%d", a[i]);
+			}
+			printf("\n");
+	for (int i = 0; i < 1023; i++) {
+		x = Utilities::scalarProduct(a, numbers);
+		printf("%d ", x);
+		Utilities::rotation1023(a);
+	}
 
 	delete numbers;
 	return "Satellit X sendet X";
