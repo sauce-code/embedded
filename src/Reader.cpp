@@ -23,9 +23,9 @@ long int* Reader::read() {
 	char* p = strtok(buffer, " ");
 	int count = 0;
 	while (p) {
-//	    printf ("Token: %s\n", p);
-	    p = strtok(NULL, " ");
+	    printf ("Token: %s\n", p);
 	    strings[count] = p;
+	    p = strtok(NULL, " ");
 	    count++;
 	}
 
