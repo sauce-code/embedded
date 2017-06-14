@@ -80,5 +80,6 @@ char* Decoder::decode() {
 	}
 
 	delete numbers;
+	delete[] sequences;
 	return "Satellit X sendet X";
 }
