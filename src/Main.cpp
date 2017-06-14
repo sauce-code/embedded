@@ -37,15 +37,6 @@ int main(int argc, char** argv) {
 	char* output = decoder->decode();
 	printf("%s\n", output);
 
-	ChipSequence sequence1 = ChipSequence(2, 6);
-	sequence1.printSequence();
-	printf("\n");
-
-	ChipSequence sequence2 = ChipSequence(3, 7);
-	sequence2.printSequence();
-	printf("\n");
-	ChipSequence sequence3 = ChipSequence(9, 10);
-	sequence3.printSequence();
 
 	// aufraeumen
 	delete decoder;

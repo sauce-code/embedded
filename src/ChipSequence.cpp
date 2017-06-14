@@ -19,7 +19,6 @@ ChipSequence::ChipSequence(int a, int b) {
 	bool x = 0;
 
 	for (int i = 0; i < 1023; i++) {
-
 		x = register1[0] ^ (register2[a] ^ register2[b]);
 
 		// Schieberegister
@@ -39,13 +38,9 @@ ChipSequence::ChipSequence(int a, int b) {
  *  Das höchstwertige Bit wird in das erste zurückgeschrieben.
  */
 void ChipSequence::rotation(bool* reg) {
-//	int i = 0;
 	bool carry = reg[0];
-//	while (reg[i+1]) {
-	for (int i = 0; i < 10; i++) {
-//		printf("Penis\n");
+	for (int i = 0; i < 9; i++) {
 		reg[i] = reg[i+1];
-//		i++;
 	}
 	reg[9] = carry;
 }
