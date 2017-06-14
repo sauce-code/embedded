@@ -67,5 +67,6 @@ char* Decoder::decode() {
 
 
 	delete signal;
+	delete[] sequences;
 	return "Satellit X sendet X";
 }
