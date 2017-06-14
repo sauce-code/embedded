@@ -35,16 +35,8 @@ char* Decoder::decode() {
 	int x = Utilities::scalarProduct(a, numbers);
 	printf("\n%d\n", x);
 
-	printf("\n");
-	for (unsigned int i = 0; i < 1023; i++) {
-		printf("%d", a[i]);
-	}
-	printf("\n");
-	for (unsigned int i = 0; i < 1023; i++) {
-		printf("%d", numbers[i]);
-	}
-	printf("\n");
+
 
 	delete numbers;
-	return "Sattelit X sendet X";
+	return "Satellit X sendet X";
 }

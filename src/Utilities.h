@@ -13,15 +13,15 @@
 class Utilities {
 public:
 	static int scalarProduct(int* a, int* b) {
-		int ret;
+		int ret = 0;
 		for (int i = 0; i < 1023; i++) {
 			ret += a[i] * b[i];
 		}
 		return ret;
 	}
 
-	static int* Utilities::convertFromTo(bool* from) {
-		int* to = new int[sizeof(from)];
+	static int* convertFromTo(bool* from) {
+		int* to = new int[1023];
 		for (int i = 0; i < 1023; i++) {
 			to[i] = from[i];
 		}
