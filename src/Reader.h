@@ -15,7 +15,7 @@ private:
 public:
 	Reader(const char*);
 	virtual ~Reader();
-	long int* read();
+	int* read();
 };
 
 #endif /* READER_H_ */

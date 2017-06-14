@@ -14,30 +14,40 @@ Reader::~Reader() {
 	fclose(file);
 }
 
-long int* Reader::read() {
-	char buffer[100000];
-	fgets(buffer, sizeof(buffer), file);
+int* Reader::read() {
+//	char buffer[100000];
+//	fgets(buffer, sizeof(buffer), file);
+//
+//	char** strings = new char*[COUNT];
+//
+//	char* p = strtok(buffer, " ");
+//	int count = 0;
+//	while (p) {
+////	    printf ("Token: %s\n", p);
+//	    strings[count] = p;
+//	    p = strtok(NULL, " ");
+//	    count++;
+//	}
+//
+//	long int* result = new long int[COUNT];
+//
+//	for (int i = 0; i < COUNT; i++) {
+//		result[i] = strtol(strings[i], NULL, 10);
+//	}
+//
+//	delete strings;
+//
+//	return result;
 
-	char** strings = new char*[COUNT];
-
-	char* p = strtok(buffer, " ");
-	int count = 0;
-	while (p) {
-//	    printf ("Token: %s\n", p);
-	    strings[count] = p;
-	    p = strtok(NULL, " ");
-	    count++;
+	int* sequence = new int[COUNT];
+	int i = 0;
+	int counter = 0;
+	while (!feof(file) && counter < 1023) {
+		fscanf(file, "%d", &i);
+		sequence[counter] = i;
+		counter++;
 	}
-
-	long int* result = new long int[COUNT];
-
-	for (int i = 0; i < COUNT; i++) {
-		result[i] = strtol(strings[i], NULL, 10);
-	}
-
-	delete strings;
-
-	return result;
+	return sequence;
 }
 
 //void readFile(int * fileNumber, char * fileName){
