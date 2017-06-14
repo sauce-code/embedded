@@ -8,6 +8,8 @@
 #ifndef CHIPSEQUENCE_H_
 #define CHIPSEQUENCE_H_
 
+#include "Utilities.h"
+
 class ChipSequence {
 private:
 	bool sequence [1023];
@@ -26,6 +28,7 @@ public:
 	void rotation(bool* reg);
 
 	bool* getSequence();
+	int* getIntSequence();
 
 	void printSequence();
 

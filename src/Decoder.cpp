@@ -12,25 +12,14 @@ Decoder::~Decoder() {
 }
 
 char* Decoder::decode() {
-	int* numbers = reader->read();
+	int* signal = reader->read();
 	// TODO
 	for (int i = 0; i < 1023; i++) {
-		printf("%d ", numbers[i]);
+		printf("%d ", signal[i]);
 	}
 	printf("\n");
 
-	ChipSequence sequence1 = ChipSequence(2, 6);
-	printf("\n");
-	sequence1.printSequence();
-	printf("\n");
-	ChipSequence sequence2 = ChipSequence(3, 7);
-	sequence2.printSequence();
-	printf("\n");
-	ChipSequence sequence3 = ChipSequence(9, 10);
-	sequence3.printSequence();
-	ChipSequence sequence3 = ChipSequence(9, 10);
-
-	ChipSequence** sequences = new ChipSequence[SATELLITE_COUNT];
+	ChipSequence** sequences = new ChipSequence*[SATELLITE_COUNT];
 	sequences[0] = new ChipSequence(2, 6);
 	sequences[1] = new ChipSequence(3, 7);
 	sequences[2] = new ChipSequence(4, 8);
@@ -57,28 +46,26 @@ char* Decoder::decode() {
 	sequences[23] = new ChipSequence(4, 6);
 
 
-	printf("\n");
+	int x[24][1023];
 
-	int* a = Utilities::convertFromTo(sequence1.getSequence());
-	int x = Utilities::scalarProduct(a, numbers);
-	printf("\n%d\n", x);
+	for (int j = 0; j < 24; j++) {
+		int* seq = sequences[j]->getIntSequence();
 
-	printf("\n");
-	for (int i = 0; i < 1023; i++) {
-		printf("%d", a[i]);
-	}
-	printf("\n");
-//	Utilities::rotation1023(a);
-	for (int i = 0; i < 1023; i++) {
-				printf("%d", a[i]);
+		for (int i = 0; i < 1023; i++) {
+			x[j][i] =  Utilities::scalarProduct(seq, signal);
+			if (x[j][i] == 1024 || x[j][i] == -1024) {
+				printf("%d ", x[j][i]);
 			}
-			printf("\n");
-	for (int i = 0; i < 1023; i++) {
-		x = Utilities::scalarProduct(a, numbers);
-		printf("%d ", x);
-		Utilities::rotation1023(a);
+			if (x[j][i] == 1023 || x[j][i] == -1023) {
+				printf("%d ", x[j][i]);
+			}
+			Utilities::rotation1023(seq);
+
+		}
+//		printf("\n");
 	}
 
-	delete numbers;
+
+	delete signal;
 	return "Satellit X sendet X";
 }

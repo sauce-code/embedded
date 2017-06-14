@@ -49,6 +49,11 @@ bool* ChipSequence::getSequence() {
 	return sequence;
 }
 
+int* ChipSequence::getIntSequence() {
+	int* a = Utilities::convertFromTo(sequence);
+	return a;
+}
+
 void ChipSequence::printSequence() {
 	for (int i = 0; i < 1023; i++) {
 		printf("%i", sequence[i]);
