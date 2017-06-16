@@ -7,7 +7,7 @@
 #include "Reader.h"
 
 #define SATELLITE_COUNT 24
-#define MAX 1024
+#define PEAK 1024
 
 class Decoder {
 private:
