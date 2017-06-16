@@ -52,8 +52,7 @@ void Decoder::decode() {
 			int x = scalarProduct(seq, rotatedSignals[delta]);
 
 			if (x == MAX || x == -MAX) {
-				printf("Satellite %d has sent bit %d (delta = %d)\n", sat,
-						(x > 0 ? 1 : 0), delta);
+				printf("Satellite %d has sent bit %d (delta = %d)\n", sat, (x > 0 ? 1 : 0), delta);
 				bitSent = true;
 			}
 		}
