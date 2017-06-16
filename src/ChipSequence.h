@@ -25,8 +25,6 @@ public:
 	 */
 	ChipSequence(int a, int b);
 
-	void rotation(bool* reg);
-
 	bool* getSequence();
 	int* getIntSequence();
 

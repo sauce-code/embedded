@@ -23,7 +23,11 @@ public:
 	static int* convertFromTo(bool* from) {
 		int* to = new int[1023];
 		for (int i = 0; i < 1023; i++) {
-			to[i] = from[i];
+			if (from[i] == 0) {
+				to[i] = -1;
+			} else {
+				to[i] = from[i];
+			}
 		}
 		return to;
 	}

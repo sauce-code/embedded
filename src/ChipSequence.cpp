@@ -9,6 +9,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/** Imitiert ein Schieberegister
+ *  Rotiert die Werte des Arrays eins weiter in der Form:
+ *		reg[0] = reg[1];
+ *  	reg[1] = reg[2];
+ *  Das höchstwertige Bit wird in das erste zurückgeschrieben.
+ */
+void rotation(bool* reg) {
+	bool carry = reg[0];
+	for (int i = 0; i < 9; i++) {
+		reg[i] = reg[i+1];
+	}
+	reg[9] = carry;
+}
+
 ChipSequence::ChipSequence(int a, int b) {
 
 	a = abs(a - 10);
@@ -31,19 +46,6 @@ ChipSequence::ChipSequence(int a, int b) {
 	}
 }
 
-/** Imitiert ein Schieberegister
- *  Rotiert die Werte des Arrays eins weiter in der Form:
- *		reg[0] = reg[1];
- *  	reg[1] = reg[2];
- *  Das höchstwertige Bit wird in das erste zurückgeschrieben.
- */
-void ChipSequence::rotation(bool* reg) {
-	bool carry = reg[0];
-	for (int i = 0; i < 9; i++) {
-		reg[i] = reg[i+1];
-	}
-	reg[9] = carry;
-}
 
 bool* ChipSequence::getSequence() {
 	return sequence;

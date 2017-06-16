@@ -4,6 +4,7 @@
 #include "Reader.h"
 #include "Decoder.h"
 #include "ChipSequence.h"
+#include "MagicTest.h"
 
 using namespace std;
 
@@ -31,6 +32,10 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 	fileTest.close();
+
+	// Tests
+	MagicTest test = MagicTest();
+	test.testChipSequence();
 
 	// Programm ausfuehren
 	Decoder* decoder = new Decoder(path);
