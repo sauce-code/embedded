@@ -1,39 +1,18 @@
-/*
- * ChipSequence.h
- *
- *  Created on: 14.06.2017
- *      Author: Joachim Leiser
- */
-
 #ifndef CHIPSEQUENCE_H_
 #define CHIPSEQUENCE_H_
 
-#include "Utilities.h"
+#include <stdlib.h>
+
+#include "Reader.h"
 
 class ChipSequence {
 private:
-	bool sequence [1023];
-
-
+	int* sequence;
+	void rotate(int*);
 public:
-	/**
-	 * Erzeugt die Chip-Sequenz.
-	 *
-	 * a und b sind die Werte der Registersumme
-	 * Wertebereich: 0 < a <= 10
-	 * Wertebereich: 0 < b <= 10
-	 */
-	ChipSequence(int a, int b);
-
-	void rotation(bool* reg);
-
-	bool* getSequence();
-	int* getIntSequence();
-
-	void printSequence();
-
+	ChipSequence(int, int);
+	virtual ~ChipSequence();
+	int* getSequence();
 };
-
-
 
 #endif /* CHIPSEQUENCE_H_ */

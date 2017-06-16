@@ -9,13 +9,13 @@ Reader::~Reader() {
 }
 
 int* Reader::read() {
-	int* sequence = new int[COUNT];
+	int* signal = new int[SIGNAL_LENGTH];
 	int i = 0;
 	int counter = 0;
-	while (!feof(file) && counter < COUNT) {
+	while (!feof(file) && counter < SIGNAL_LENGTH) {
 		fscanf(file, "%d", &i);
-		sequence[counter] = i;
+		signal[counter] = i;
 		counter++;
 	}
-	return sequence;
+	return signal;
 }

@@ -1,25 +1,8 @@
 #include "Decoder.h"
-#include <stdio.h>
-#include "ChipSequence.h"
-#include "Utilities.h"
 
 Decoder::Decoder(const char* path) {
 	reader = new Reader(path);
-}
-
-Decoder::~Decoder() {
-	delete reader;
-}
-
-char* Decoder::decode() {
-	int* signal = reader->read();
-	// TODO
-	for (int i = 0; i < 1023; i++) {
-		printf("%d ", signal[i]);
-	}
-	printf("\n");
-
-	ChipSequence** sequences = new ChipSequence*[SATELLITE_COUNT];
+	sequences = new ChipSequence*[SATELLITE_COUNT];
 	sequences[0] = new ChipSequence(2, 6);
 	sequences[1] = new ChipSequence(3, 7);
 	sequences[2] = new ChipSequence(4, 8);
@@ -44,29 +27,59 @@ char* Decoder::decode() {
 	sequences[21] = new ChipSequence(6, 9);
 	sequences[22] = new ChipSequence(1, 3);
 	sequences[23] = new ChipSequence(4, 6);
+}
 
+Decoder::~Decoder() {
+	delete reader;
+	delete[] sequences;
+}
 
-	int x[24][1023];
+void Decoder::decode() {
+	int* signal = reader->read();
 
-	for (int j = 0; j < 24; j++) {
-		int* seq = sequences[j]->getIntSequence();
+	bool bitSent = false;
 
-		for (int i = 0; i < 1023; i++) {
-			x[j][i] =  Utilities::scalarProduct(seq, signal);
-			if (x[j][i] == 1024 || x[j][i] == -1024) {
-				printf("%d ", x[j][i]);
-			}
-			if (x[j][i] == 1023 || x[j][i] == -1023) {
-				printf("%d ", x[j][i]);
-			}
-			Utilities::rotation1023(seq);
+	int** rotatedSignals = new int*[SIGNAL_LENGTH];
 
-		}
-//		printf("\n");
+	for (int delta = 0; delta < SIGNAL_LENGTH; delta++) {
+		rotatedSignals[delta] = rotate(signal, delta);
 	}
 
+	for (int sat = 0; sat < SATELLITE_COUNT; sat++) {
+		int* seq = sequences[sat]->getSequence();
+
+		for (int delta = 0; delta < SIGNAL_LENGTH; delta++) {
+			int x = scalarProduct(seq, rotatedSignals[delta]);
+
+			if (x == MAX || x == -MAX) {
+				printf("Satellite %d has sent bit %d (delta = %d)\n", sat,
+						(x > 0 ? 1 : 0), delta);
+				bitSent = true;
+			}
+		}
+		delete sequences;
+	}
+
+	if (!bitSent) {
+		printf("No Bits have been sent\n");
+	}
 
 	delete signal;
-	delete[] sequences;
-	return "Satellit X sendet X";
+	delete[] rotatedSignals;
+}
+
+int Decoder::scalarProduct(int* a, int* b) {
+	int product = 0;
+	for (int i = 0; i < SIGNAL_LENGTH; i++) {
+		product += a[i] * b[i];
+	}
+	return product;
+}
+
+int* Decoder::rotate(int* signal, int delta) {
+	int* rotatedSignal = new int[SIGNAL_LENGTH];
+	for (int i = 0; i < SIGNAL_LENGTH; i++) {
+		rotatedSignal[i] = signal[(i + delta) % SIGNAL_LENGTH];
+	}
+	return rotatedSignal;
 }

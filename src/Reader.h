@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#define COUNT 1023
+#define SIGNAL_LENGTH 1023
 
 class Reader {
 private:

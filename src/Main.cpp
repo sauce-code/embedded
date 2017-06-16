@@ -1,19 +1,13 @@
 #include <stdlib.h>
 #include <fstream>
 
-#include "Reader.h"
-#include "Decoder.h"
 #include "ChipSequence.h"
+#include "Decoder.h"
+#include "Reader.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
-
-	// TODO Liste:
-	//		Funktion zum Auflösen des Multiplex
-	//		Funktion zur Autokorrelation
-	// 		Funktion die die Verschiebung der Chipsequenz findet
-	//		Funktion zur Ausgabe
 
 	// waren die Eingabeparameter korrekt?
 	if (argc != 2) {
@@ -34,9 +28,7 @@ int main(int argc, char** argv) {
 
 	// Programm ausfuehren
 	Decoder* decoder = new Decoder(path);
-	char* output = decoder->decode();
-	printf("%s\n", output);
-
+	decoder->decode();
 
 	// aufraeumen
 	delete decoder;
