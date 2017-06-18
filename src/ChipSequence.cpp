@@ -16,10 +16,9 @@ ChipSequence::ChipSequence(int a, int b) {
 
 	int register1[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 	int register2[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-	int x = 0;
 
 	for (int i = 0; i < SIGNAL_LENGTH; i++) {
-		x = register1[0] ^ (register2[a] ^ register2[b]);
+		int x = register1[0] ^ (register2[a] ^ register2[b]);
 
 		// Schieberegister
 		rotate(register1);
@@ -28,7 +27,7 @@ ChipSequence::ChipSequence(int a, int b) {
 		register2[9] = register2[8 - 1] ^ register2[7 - 1] ^ register2[4 - 1] ^ register2[2 - 1]
 				^ register2[1 - 1] ^ register2[9];
 
-		sequence[i] = x;
+		sequence[i] = (x > 0 ? 1 : -1);
 	}
 }
 
@@ -54,9 +53,5 @@ void ChipSequence::rotate(int* reg) {
 }
 
 int* ChipSequence::getSequence() {
-	int* converted = new int[SIGNAL_LENGTH];
-	for (int i = 0; i < SIGNAL_LENGTH; i++) {
-		converted[i] = (sequence[i] == 1 ? 1 : -1);
-	}
-	return converted;
+	return sequence;
 }

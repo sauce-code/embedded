@@ -56,7 +56,6 @@ void Decoder::decode() {
 				bitSent = true;
 			}
 		}
-		delete sequences;
 	}
 
 	if (!bitSent) {
