@@ -68,10 +68,6 @@ void Decoder::decode() {
 				bitSent = true;
 			}
 		}
-		/*
-		 * Diese Zeile Code lässt dein Programm abstürzen.
-		 */
-		// delete sequences;
 	}
 
 	if (!bitSent) {
