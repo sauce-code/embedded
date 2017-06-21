@@ -5,6 +5,8 @@
 
 #include "Reader.h"
 
+#define REGISTER_LENGTH 10
+
 class ChipSequence {
 private:
 	int* sequence;

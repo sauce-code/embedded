@@ -2,12 +2,14 @@
 #define DECODER_H_
 
 #include <stdio.h>
+#include <math.h>
 
 #include "ChipSequence.h"
 #include "Reader.h"
 
 #define SATELLITE_COUNT 24
-#define PEAK 1024
+#define PEAK 1023
+#define SATELLITE_NOISE_COUNT 3
 
 class Decoder {
 private:

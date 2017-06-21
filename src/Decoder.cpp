@@ -1,7 +1,4 @@
 #include "Decoder.h"
-#include <math.h>
-
-#include <iostream>
 
 Decoder::Decoder(const char* path) {
 	reader = new Reader(path);
@@ -38,18 +35,16 @@ Decoder::~Decoder() {
 }
 
 void Decoder::decode() {
-	float registerLength = 10.0;
-	int numberOfSatelites = 3;
+
 	/*
 	 * Das hier sind die beiden wichtigen Grenzen
-	 * 1023 - drei mal der Störwert
-	 * -1023 + drei mal der Störwert
+	 * 1023 - drei mal der Stoerrwert
+	 * -1023 + drei mal der Stoerrwert
 	 */
-	float upperPeak = 1023.0 - (numberOfSatelites * (pow(-2.0, (registerLength + 2.0)/2) + 1));
-	float lowerPeak = -1023 + (numberOfSatelites * (pow(2.0, (registerLength + 2.0)/2) - 1));
+	double upperPeak = PEAK - (SATELLITE_NOISE_COUNT * (pow(-2.0, (REGISTER_LENGTH + 2.0) / 2.0) + 1.0));
+	double lowerPeak = -PEAK + (SATELLITE_NOISE_COUNT * (pow(2.0, (REGISTER_LENGTH + 2.0) / 2.0) - 1.0));
 
 	int* signal = reader->read();
-	bool bitSent = false;
 
 	int** rotatedSignals = new int*[SIGNAL_LENGTH];
 
@@ -64,14 +59,9 @@ void Decoder::decode() {
 			int x = scalarProduct(seq, rotatedSignals[delta]);
 
 			if (x >= upperPeak || x <= lowerPeak) {
-				printf("Satellite %d has sent bit %d (delta = %d)\n", sat, (x > 0 ? 1 : 0), delta);
-				bitSent = true;
+				printf("satellite %d has sent bit %d (delta = %d)\n", sat + 1, (x > 0 ? 1 : 0), delta);
 			}
 		}
-	}
-
-	if (!bitSent) {
-		printf("No Bits have been sent\n");
 	}
 
 	delete signal;
