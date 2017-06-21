@@ -43,29 +43,42 @@ char* Decoder::decode() {
 	sequences[21] = new ChipSequence(6,  9);
 	sequences[22] = new ChipSequence(1,  3);
 	sequences[23] = new ChipSequence(4,  6);
+
+
 /*
 	for (int j = 0; j < 24; j++) {
-		int* seq = sequences[j]->getIntSequence();
-		for (int i = 0; i < 1023; i++) {
-			if (seq[i] == 0) {
-				seq[i] = -1;
-			}
-		}
-	}
-
-	for (int j = 0; j < 24; j++) {
-			int* seq = sequences[j]->getIntSequence();
+			bool* seq = sequences[j]->getSequence();
 			for (int i = 0; i < 1023; i++) {
 				printf("%d ", seq[i]);
 			}
 			printf("\n");
 		}
 */
+	/*
+	int* sequ = sequences[0]->getIntSequence();
+	for (int i=0; i < 1023; i++) {
+		printf("%d ", sequ[i] == -1 ? 0 : 1);
+	}
+	printf("\n");
+	Utilities::rotation1023(sequ);
+	for (int i=0; i < 1023; i++) {
+		printf("%d ", sequ[i] == -1 ? 0 : 1 );
+	}
+	printf("\n");*/
 
 	int x[24][1023];
 
 	for (int j = 0; j < 24; j++) {
 		int* seq = sequences[j]->getIntSequence();
+
+		/*
+		if (j == 0) {
+			for (int i=0; i<1023; i++) {
+				printf("%d ", seq[i] == -1 ? 0 : 1);
+
+			}
+			printf("\n");
+		}*/
 
 		for (int i = 0; i < 1023; i++) {
 			x[j][i] =  Utilities::scalarProduct(seq, signal);
@@ -76,10 +89,11 @@ char* Decoder::decode() {
 				printf("%d ", x[j][i]);
 			}
 			Utilities::rotation1023(seq);
-			printf("%d ", x[j][i]);
-//			printf("%d ", seq[i]);
+//			printf("%d ", x[j][i]);
+
 		}
-		printf("\n");
+
+//		printf("\n");
 	}
 
 

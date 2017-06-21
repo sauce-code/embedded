@@ -69,6 +69,17 @@ void MagicTest::testChipSequence() {
 		}
 		printf("\n\n");
 	}
+
+	int *test3 = seq.getIntSequence();
+
+	for (int i=0; i<1023; i++) {
+		Utilities::rotation1023(test3);
+	}
+	for (int i=0; i<1023; i++) {
+		if (test3[i] != seq.getIntSequence()[i]) {
+			printf("Fehler");
+		}
+	}
 }
 
 
