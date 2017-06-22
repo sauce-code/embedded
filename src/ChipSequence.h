@@ -1,10 +1,11 @@
 #ifndef CHIPSEQUENCE_H_
 #define CHIPSEQUENCE_H_
 
-#include <stdlib.h>
-
 #include "Reader.h"
 
+/**
+ * Die Laenge jedes Registers.
+ */
 #define REGISTER_LENGTH 10
 
 class ChipSequence {

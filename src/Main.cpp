@@ -7,11 +7,19 @@
 
 using namespace std;
 
+/**
+ * Fuerht das gesamte Programm aus.
+ *
+ * @param argc Anzahl der Parameter
+ * @param argv Liste der Parameter
+ * @return EXIT_FAILURE, falls ein Fehler auftrat
+ *         EXIT_SUCCESS, falls kein Fehler auftrat
+ */
 int main(int argc, char** argv) {
 
 	// waren die Eingabeparameter korrekt?
 	if (argc != 2) {
-		fprintf(stderr, "Parameter fehlerhaft");
+		fprintf(stderr, "parameters incorrect");
 		return EXIT_FAILURE;
 	}
 
@@ -21,7 +29,7 @@ int main(int argc, char** argv) {
 	// ueberpruefen, ob Eingabedatei geoeffnet werden kann
 	ifstream fileTest(path);
 	if (!fileTest.is_open()) {
-		fprintf(stderr, "Datei %s kann nicht geoeffnet werden", path);
+		fprintf(stderr, "file %s cannot be opened", path);
 		return EXIT_FAILURE;
 	}
 	fileTest.close();

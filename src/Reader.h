@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 
+/**
+ * Die Laenge jedes Signals.
+ */
 #define SIGNAL_LENGTH 1023
 
 class Reader {

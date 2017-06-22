@@ -1,5 +1,10 @@
 #include "Decoder.h"
 
+/**
+ * Erzeugt einen neuen Decoder.
+ *
+ * @param path Pfad zur einzulesenden Datei
+ */
 Decoder::Decoder(const char* path) {
 	reader = new Reader(path);
 	sequences = new ChipSequence*[SATELLITE_COUNT];
@@ -29,20 +34,26 @@ Decoder::Decoder(const char* path) {
 	sequences[23] = new ChipSequence(4, 6);
 }
 
+/**
+ * Loescht den Decoder und dessen Felder.
+ */
 Decoder::~Decoder() {
 	delete reader;
 	delete[] sequences;
 }
 
+/**
+ * Fuehrt den decode Vorgang aus und gibt die gesendeten Bits auf der Konsole aus.
+ */
 void Decoder::decode() {
 
 	/*
 	 * Das hier sind die beiden wichtigen Grenzen
-	 * 1023 - drei mal der Stoerrwert
-	 * -1023 + drei mal der Stoerrwert
+	 * 1023 - drei mal der Stoerwert
+	 * -1023 + drei mal der Stoerwert
 	 */
-	double upperPeak = PEAK - (SATELLITE_NOISE_COUNT * (pow(-2.0, (REGISTER_LENGTH + 2.0) / 2.0) + 1.0));
-	double lowerPeak = -PEAK + (SATELLITE_NOISE_COUNT * (pow(2.0, (REGISTER_LENGTH + 2.0) / 2.0) - 1.0));
+	double upperPeak = PEAK - (SATELLITE_NOISE_COUNT * (pow(-2, (REGISTER_LENGTH + 2) / 2) + 1));
+	double lowerPeak = -PEAK + (SATELLITE_NOISE_COUNT * (pow(2, (REGISTER_LENGTH + 2) / 2) - 1));
 
 	int* signal = reader->read();
 
@@ -68,6 +79,9 @@ void Decoder::decode() {
 	delete[] rotatedSignals;
 }
 
+/**
+ * Berechnet das Skalarprodukt von zwei Vektoren.
+ */
 int Decoder::scalarProduct(int* a, int* b) {
 	int product = 0;
 	for (int i = 0; i < SIGNAL_LENGTH; i++) {
@@ -76,6 +90,13 @@ int Decoder::scalarProduct(int* a, int* b) {
 	return product;
 }
 
+/**
+ * Rotiert ein Signal um ein gegebenes delta und gibt ein neues Array zurueck.
+ *
+ * @param signal Signal, welches rotiert  werden soll
+ * @param delta wert, um welchen das Signal rotiert werden soll
+ * @return neues Array mit dem rotierten Signal
+ */
 int* Decoder::rotate(int* signal, int delta) {
 	int* rotatedSignal = new int[SIGNAL_LENGTH];
 	for (int i = 0; i < SIGNAL_LENGTH; i++) {

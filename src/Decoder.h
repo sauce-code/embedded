@@ -7,8 +7,19 @@
 #include "ChipSequence.h"
 #include "Reader.h"
 
+/**
+ * Anzahl der Satelliten.
+ */
 #define SATELLITE_COUNT 24
+
+/**
+ * Grundwert fuer einen Peak.
+ */
 #define PEAK 1023
+
+/**
+ * Anzahl der Stoersatelliten.
+ */
 #define SATELLITE_NOISE_COUNT 3
 
 class Decoder {
