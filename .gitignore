@@ -33,6 +33,3 @@
 
 # Debug folder
 /Debug/
-
-# XML files
-*.xml
